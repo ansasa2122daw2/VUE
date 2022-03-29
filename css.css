@@ -8,6 +8,10 @@
 	background-color: #fdf9c4;
 }
 
+body{
+	
+}
+
 header {
 	width: 100%;
 }
@@ -51,13 +55,16 @@ th {
 }
 
 .dificultad {
-	margin-top: 2%;
+	float: right;
+	position: relative;
+	margin-top: -100px;
+	margin-right: 50px;
 	width: 25%;
 	font-size: 25px;
 }
 
 .dificultad h2 {
-	margin-left: 11%;
+	margin-left: 17%;
 }
 
 .botones {
@@ -67,14 +74,26 @@ th {
 	margin: auto;
 }
 
-button {
+a {
 	align-self: center;
 	margin-top: 35px;
 	width: 150px;
 	border-radius: 25px;
-	height: 70px;
+	height: 60px;
 	font-size: 25px;
 	cursor: pointer;
+	text-align: center;
+	padding-top: 25px;
+	border: 2px solid black;
+	text-decoration: none;
+}
+
+a:active{
+	opacity: 0.6;
+}
+
+a:visited{
+	color: black;
 }
 
 #buton1 {
@@ -87,4 +106,8 @@ button {
 
 #buton3 {
 	background-color: #fcb7af;
+}
+
+#buton4 {
+	background-color: lightgrey;
 }
