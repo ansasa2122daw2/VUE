@@ -5,8 +5,22 @@ const error = {
       };
     },
     template: `
-    <div>
-      <p>URL no encaminada : {{url}} </p>
+    <div class="main">
+    <div class="puntuaciones">
+        <table id="table">
+            <tr>
+                <th>jugador</th>
+                <th>tiempo</th>
+                <th>errores</th>
+                <th>dificultad</th>
+            </tr>
+            <tr>
+                <td>ben isshowspeed</td>
+                <td>19:05</td>
+                <td>5</td>
+                <td>fácil</td>
+            </tr>
+        </table>
     </div>
     `
   };
