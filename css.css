@@ -8,8 +8,7 @@
 	background-color: #fdf9c4;
 }
 
-body{
-	
+body {
 }
 
 header {
@@ -89,11 +88,11 @@ a {
 	color: black;
 }
 
-a:active{
+a:active {
 	opacity: 0.6;
 }
 
-a:visited{
+a:visited {
 	color: black;
 }
 
@@ -111,4 +110,54 @@ a:visited{
 
 #buton4 {
 	background-color: lightgrey;
+}
+
+.casilla:nth-child(n):nth-child(-n + 9) {
+	border-top-width: 4px;
+}
+.casilla:nth-child(n + 73):nth-child(-n + 81) {
+	border-bottom-width: 4px;
+}
+.casilla:nth-child(3n) {
+	border-right-width: 4px;
+}
+.casilla:nth-child(9n + 1) {
+	border-left-width: 4px;
+}
+.casilla:nth-child(n + 19):nth-child(-n + 27) {
+	border-bottom-width: 4px;
+}
+.casilla:nth-child(n + 46):nth-child(-n + 54) {
+	border-bottom-width: 4px;
+}
+
+.sudoku {
+	display: grid;
+	grid-template-columns: repeat(9, 3rem);
+	grid-template-rows: repeat(9, 3rem);
+	justify-content: center;
+	align-content: center;
+	grid-gap: 0rem;
+	list-style: none;
+	margin: 0 0 2vw;
+	padding: 0;
+	font-size: calc(2vw + 10px);
+}
+.casilla {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.casilla input {
+	width: 2.5rem;
+	height: 2.6rem;
+	text-align: center;
+	border: none;
+	outline: none;
+	border-radius: 0;
 }
