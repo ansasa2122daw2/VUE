@@ -133,19 +133,109 @@ const facil = {
 				{ valor: 7, disabled: true },
 				{ valor: "", disabled: false },
 			],
+			sudokuResuelto: [
+				{ valor: 9, disabled: false },
+				{ valor: 6, disabled: true },
+				{ valor: 3, disabled: false },
+				{ valor: 1, disabled: true },
+				{ valor: 7, disabled: false },
+				{ valor: 4, disabled: true },
+				{ valor: 2, disabled: false },
+				{ valor: 5, disabled: true },
+				{ valor: 8, disabled: false },
+				{ valor: 1, disabled: false },
+				{ valor: 7, disabled: false },
+				{ valor: 8, disabled: true },
+				{ valor: 3, disabled: true },
+				{ valor: 2, disabled: false },
+				{ valor: 5, disabled: true },
+				{ valor: 6, disabled: true },
+				{ valor: 4, disabled: false },
+				{ valor: 9, disabled: false },
+				{ valor: 2, disabled: true },
+				{ valor: 5, disabled: false },
+				{ valor: 4, disabled: false },
+				{ valor: 6, disabled: false },
+				{ valor: 8, disabled: false },
+				{ valor: 9, disabled: false },
+				{ valor: 7, disabled: false },
+				{ valor: 3, disabled: false },
+				{ valor: 1, disabled: true },
+				{ valor: 8, disabled: true },
+				{ valor: 2, disabled: false },
+				{ valor: 1, disabled: false },
+				{ valor: 4, disabled: true },
+				{ valor: 3, disabled: false },
+				{ valor: 7, disabled: true },
+				{ valor: 5, disabled: false },
+				{ valor: 9, disabled: false },
+				{ valor: 6, disabled: true },
+				{ valor: 4, disabled: false },
+				{ valor: 9, disabled: false },
+				{ valor: 6, disabled: true },
+				{ valor: 8, disabled: false },
+				{ valor: 5, disabled: false },
+				{ valor: 2, disabled: false },
+				{ valor: 3, disabled: true },
+				{ valor: 1, disabled: false },
+				{ valor: 7, disabled: false },
+				{ valor: 7, disabled: true },
+				{ valor: 3, disabled: true },
+				{ valor: 5, disabled: false },
+				{ valor: 9, disabled: true },
+				{ valor: 6, disabled: false },
+				{ valor: 1, disabled: true },
+				{ valor: 8, disabled: true },
+				{ valor: 5, disabled: false },
+				{ valor: 4, disabled: true },
+				{ valor: 5, disabled: true },
+				{ valor: 8, disabled: false },
+				{ valor: 9, disabled: false },
+				{ valor: 7, disabled: false },
+				{ valor: 1, disabled: false },
+				{ valor: 3, disabled: false },
+				{ valor: 4, disabled: false },
+				{ valor: 6, disabled: false },
+				{ valor: 2, disabled: true },
+				{ valor: 3, disabled: false },
+				{ valor: 1, disabled: false },
+				{ valor: 7, disabled: true },
+				{ valor: 2, disabled: true },
+				{ valor: 4, disabled: false },
+				{ valor: 6, disabled: true },
+				{ valor: 9, disabled: true },
+				{ valor: 8, disabled: false },
+				{ valor: 5, disabled: false },
+				{ valor: 6, disabled: false },
+				{ valor: 4, disabled: true },
+				{ valor: 2, disabled: false },
+				{ valor: 5, disabled: true },
+				{ valor: 9, disabled: false },
+				{ valor: 8, disabled: true },
+				{ valor: 1, disabled: false },
+				{ valor: 7, disabled: true },
+				{ valor: 3, disabled: false },
+			],
 			color: "red",
 			colorVALOR: "solid black",
+			show: false,
 		};
 	},
 	template: `
     <div>
-      <p>Facil</p>
         <div class="sudoku">
-            <div class="casilla" v-for="(numero,index) in sudoku" :key="index">
-
-                <input type="number" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]" />
+            <div v-if="!show" class="casilla" v-for="(numero,index) in sudoku" :key="index">
+                <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
+                 />
             </div>
+                <div v-if="show" class="casilla" v-for="(numero,index) in sudokuResuelto" :key="index">
+                    <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.valor" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
+                    />
+                </div>
+
         </div>
+        <button id="listo">Comprobar</button>
+        <button id="resolver" @click="show =!show">Resolver</button>
       </div>
 
     `,
@@ -246,7 +336,7 @@ const medio = {
         <div class="sudoku">
             <div class="casilla" v-for="(numero,index) in sudokuM" :key="index">
                 
-            <input type="number" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"/>
+            <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"/>
             </div>
         </div>
     </div>  
@@ -348,7 +438,7 @@ const dificil = {
         <div class="sudoku">
             <div class="casilla" v-for="(numero,index) in sudokuD" :key="index">
                 
-            <input type="number" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]" />
+            <input type="number" pattern="[0-9]" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]" />
             </div>
         </div>
     </div>  
