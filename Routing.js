@@ -218,8 +218,13 @@ const facil = {
 			],
 			color: "red",
 			colorVALOR: "solid black",
-			show: false,
+			show: true,
 		};
+	},
+	methods: {
+		mostrar: function (nouValor, event) {
+			this.mostra = nouValor;
+		},
 	},
 	template: `
     <div>
@@ -235,7 +240,7 @@ const facil = {
 
         </div>
         <button id="listo">Comprobar</button>
-        <button id="resolver" @click="show =!show">Resolver</button>
+        <button id="resolver" v-on:click="mostrar(true, $event)">Resolver</button>
       </div>
 
     `,
