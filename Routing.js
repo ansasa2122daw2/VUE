@@ -218,12 +218,12 @@ const facil = {
 			],
 			color: "red",
 			colorVALOR: "solid black",
-			show: true,
+			show: false,
 		};
 	},
 	methods: {
 		mostrar: function (nouValor, event) {
-			this.mostra = nouValor;
+			this.show = nouValor;
 		},
 	},
 	template: `
