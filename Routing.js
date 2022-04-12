@@ -245,6 +245,8 @@ const facil = {
 
     `,
 };
+//esdeveniment v-on:click
+
 const medio = {
 	data: function () {
 		return {
