@@ -216,9 +216,12 @@ const facil = {
 				{ valor: 7, disabled: true },
 				{ valor: 3, disabled: false },
 			],
-			color: "red",
+			color: "blue",
 			colorVALOR: "solid black",
 			show: false,
+			cursor: "not-allowed",
+			cursorP: "pointer",
+			timer: 0,
 		};
 	},
 	methods: {
@@ -226,12 +229,21 @@ const facil = {
 			this.show = nouValor;
 		},
 	},
+	watch: {
+		contador() {
+			setInterval(() => {
+				this.timer++;
+				this.timer();
+			}, 1000);
+		},
+	},
+
 	template: `
     <div>
         <div class="sudoku">
             <div v-if="!show" class="casilla" v-for="(numero,index) in sudoku" :key="index">
                 <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
-                 />
+                />
             </div>
                 <div v-if="show" class="casilla" v-for="(numero,index) in sudokuResuelto" :key="index">
                     <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.valor" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
@@ -239,8 +251,10 @@ const facil = {
                 </div>
 
         </div>
-        <button id="listo">Comprobar</button>
-        <button id="resolver" v-on:click="mostrar(true, $event)">Resolver</button>
+        <button id="listo" v-bind:style="[!show ? {cursorP}:{cursor}]">Comprobar</button> 
+        <button id="resolver" v-on:click="mostrar(true, $event)" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
+        <div id="contador" >{{timer}}</div>
+ 
       </div>
 
     `,
