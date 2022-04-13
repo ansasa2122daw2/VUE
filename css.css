@@ -18,7 +18,7 @@ header {
 h1 {
 	font-family: FUENTE;
 	font-size: 75px;
-	margin-left: 41.5%;
+	margin-left: 41%;
 }
 
 .main {
@@ -54,10 +54,9 @@ th {
 }
 
 .dificultad {
-	float: right;
 	position: relative;
-	margin-top: -100px;
-	margin-right: 50px;
+	margin-top: -300px;
+	margin-left: 1100px;
 	width: 25%;
 	font-size: 25px;
 }
@@ -209,4 +208,19 @@ input::-webkit-inner-spin-button {
 .fade-enter,
 .fade-leave-to {
 	opacity: 0;
+}
+
+#timer {
+	margin-left: 742px;
+	margin-top: -65px;
+	position: absolute;
+	font-size: 35px;
+}
+
+#timerBoton {
+	margin-left: 675px;
+	margin-top: 30px;
+	position: absolute;
+	font-size: 20px;
+	background-color: rgba(0, 0, 0, 0.185);
 }
