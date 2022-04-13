@@ -225,15 +225,36 @@ const facil = {
 		};
 	},
 	methods: {
-		mostrar: function (nouValor, event) {
-			this.show = nouValor;
+		mostrar: function () {
+			this.sudoku = this.sudokuResuelto;
+			this.show = true;
 		},
-	},
-	watch: {
+		select: function (event) {
+			console.log(event);
+			this.$refs["input"].forEach((element, index) => {
+				let columna = Math.floor(event % 9);
+				let fila = Math.floor(event / 9);
+				let columnaGrande = Math.floor((event % 9) / 3);
+				let filaGrande = Math.floor(event / 9 / 3);
+
+				if (
+					index === event || // Casilla a la que se clica
+					index % 9 === columna || // Columna chica a la que se clica
+					Math.floor(index / 9) === fila || // Fila chica a la que se clica
+					(Math.floor((index % 9) / 3) === columnaGrande && Math.floor(index / 9 / 3) === filaGrande)
+				) {
+					element.classList.value = "selected";
+				} else {
+					element.classList.value = "";
+				}
+			});
+			// this.$refs["input"].focus();
+		},
 		contador() {
 			setInterval(() => {
 				this.timer++;
-				this.timer();
+				this.contador();
+				console.log("bl");
 			}, 1000);
 		},
 	},
@@ -241,18 +262,15 @@ const facil = {
 	template: `
     <div>
         <div class="sudoku">
-            <div v-if="!show" class="casilla" v-for="(numero,index) in sudoku" :key="index">
-                <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
+            <div class="casilla" v-on:click="select(index)" v-for="(numero,index) in sudoku" :key="index">
+                <input type="number" ref="input" min="1" max="9" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
                 />
             </div>
-                <div v-if="show" class="casilla" v-for="(numero,index) in sudokuResuelto" :key="index">
-                    <input type="number" min="1" max="9" v-model="numero.valor" :disabled="numero.valor" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
-                    />
-                </div>
+    
 
         </div>
         <button id="listo" v-bind:style="[!show ? {cursorP}:{cursor}]">Comprobar</button> 
-        <button id="resolver" v-on:click="mostrar(true, $event)" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
+        <button id="resolver" v-on:click="mostrar()" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
         <div id="contador" >{{timer}}</div>
  
       </div>
