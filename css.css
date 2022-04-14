@@ -54,9 +54,9 @@ th {
 }
 
 .dificultad {
+	float: right;
 	position: relative;
 	margin-top: -300px;
-	margin-left: 1100px;
 	width: 25%;
 	font-size: 25px;
 }

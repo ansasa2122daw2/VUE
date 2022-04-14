@@ -1,3 +1,6 @@
+import { Puntuacion } from './clases.js'
+//import {} from './indexeddb.js'
+
 const error = {
 	data: function () {
 		return {
@@ -237,6 +240,7 @@ const facil = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
+			interval: 0
 		};
 	},
 	methods: {
@@ -270,19 +274,19 @@ const facil = {
 		},
 		contador() {
 			this.timer111 = true;
-			interval = setInterval(() => {
+			this.interval = setInterval(() => {
 				this.timer++;
 			}, 1000);
 		},
 		comprobar() {
 			let errores = 0;
-			clearInterval(interval);
+			clearInterval(this.interval);
 			for (let i = 0; i < this.sudoku.length; i++) {
 				if (this.sudoku[i].valor != this.sudokuResuelto[i].valor) {
 					errores++;
 				}
 			}
-			nombreJugador = prompt("Introduce tu nombre: ");
+			let nombreJugador = prompt("Introduce tu nombre: ");
 			let puntuacion = new Puntuacion(nombreJugador, errores, this.timer, "Fácil");
 			routing.anadirPuntuacion(puntuacion);
 			console.log(puntuacion);
@@ -485,6 +489,7 @@ const medio = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
+			interval:0,
 		};
 	},
 	methods: {
@@ -518,19 +523,19 @@ const medio = {
 		},
 		contador() {
 			this.timer111 = true;
-			interval = setInterval(() => {
+			this.interval = setInterval(() => {
 				this.timer++;
 			}, 1000);
 		},
 		comprobar() {
 			let errores = 0;
-			clearInterval(interval);
+			clearInterval(this.interval);
 			for (let i = 0; i < this.sudoku.length; i++) {
 				if (this.sudoku[i].valor != this.sudokuResuelto[i].valor) {
 					errores++;
 				}
 			}
-			nombreJugador = prompt("Introduce tu nombre: ");
+			let nombreJugador = prompt("Introduce tu nombre: ");
 			let puntuacion = new Puntuacion(nombreJugador, errores, this.timer, "Medio");
 			routing.anadirPuntuacion(puntuacion);
 			console.log(puntuacion);
@@ -731,6 +736,7 @@ const dificil = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
+			interval:0
 		};
 	},
 	methods: {
@@ -764,19 +770,19 @@ const dificil = {
 		},
 		contador() {
 			this.timer111 = true;
-			interval = setInterval(() => {
+			this.interval = setInterval(() => {
 				this.timer++;
 			}, 1000);
 		},
 		comprobar() {
 			let errores = 0;
-			clearInterval(interval);
+			clearInterval(this.interval);
 			for (let i = 0; i < this.sudoku.length; i++) {
 				if (this.sudoku[i].valor != this.sudokuResuelto[i].valor) {
 					errores++;
 				}
 			}
-			nombreJugador = prompt("Introduce tu nombre: ");
+			let nombreJugador = prompt("Introduce tu nombre: ");
 			let puntuacion = new Puntuacion(nombreJugador, errores, this.timer, "Díficil");
 			routing.anadirPuntuacion(puntuacion);
 			console.log(puntuacion);
@@ -898,15 +904,4 @@ var routing = new Vue({
 
 //CLASE PUNTUACION
 
-class Puntuacion {
-	constructor(nombreJugador, errores, tiempo, dificultad) {
-		this.nombreJugador = nombreJugador;
-		this.errores = errores;
-		this.tiempo = tiempo;
-		this.dificultad = dificultad;
-	}
-}
 
-//LOCALSTORAGE
-
-//INDEDXEDDB
