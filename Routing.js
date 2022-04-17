@@ -4,8 +4,16 @@ import { Puntuacion } from './clases.js'
 const error = {
 	data: function () {
 		return {
-			url: window.location.hash,
+			puntuaciones: [],
 		};
+	},
+	mounted() {
+		let data = JSON.parse(localStorage.getItem("puntuaciones"));
+		console.log(data);
+		for (let i = 0; i < data.length; i++) {
+			this.puntuaciones.push(data[i]);
+		}
+		console.table("Hola", this.puntuaciones);
 	},
 	template: `
     <div class="main">
@@ -17,10 +25,10 @@ const error = {
                 <th>errores</th>
                 <th>dificultad</th>
             </tr>
-            <tr v-for="puntu in puntuaciones">
+            <tr v-for="(puntu,i) in puntuaciones" :key="i" >
                 <td>{{puntu.nombreJugador}}</td>
-                <td>{{puntu.errores}}</td>
                 <td>{{puntu.tiempo}}</td>
+                <td>{{puntu.errores}}</td>
                 <td>{{puntu.dificultad}}</td>
             </tr>
         </table>
