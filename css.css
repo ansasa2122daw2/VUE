@@ -199,10 +199,11 @@ input::-webkit-inner-spin-button {
 	cursor: pointer;
 }
 
-/*transition*/
+/*transition 1*/
+
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.5s;
+	transition: opacity 1s;
 }
 
 .fade-enter,
@@ -210,6 +211,40 @@ input::-webkit-inner-spin-button {
 	opacity: 0;
 }
 
+/*transition 2*/
+
+.slide-fade-enter-active {
+	transition: all 0.5s ease;
+}
+.slide-fade-leave-active {
+	transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+	/* .slide-fade-leave-active below version 2.1.8 */ {
+	transform: translateX(30px);
+	opacity: 0;
+}
+
+/* Transicion 3 */
+.bounce-enter-active {
+	animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+	animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.25);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/**/
 #timer {
 	margin-left: 742px;
 	margin-top: -65px;

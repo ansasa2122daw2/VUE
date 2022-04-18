@@ -1,4 +1,4 @@
-import { Puntuacion } from './clases.js'
+import { Puntuacion } from "./clases.js";
 //import {} from './indexeddb.js'
 
 const error = {
@@ -248,7 +248,7 @@ const facil = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
-			interval: 0
+			interval: 0,
 		};
 	},
 	methods: {
@@ -304,17 +304,21 @@ const facil = {
 
 	template: `
     <div>
+	
         <div class="sudoku">
             <div class="casilla" v-on:click="select(index)" v-for="(numero,index) in sudoku" :key="index">
                 <input type="number" ref="input" oninput="this.value = this.value.replace(/[^1-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="numero.valor" :disabled="numero.disabled" v-bind:style="[numero.disabled ?{colorVAL}:{color}]"
                 />
             </div>
-    
         </div>
+	
+
 		<button id="timerBoton" v-on:click="contador()" v-bind:style="[timer111 ? {cursor}:{cursorP}]">INICAR SUDOKU</button>
         <button id="listo" v-bind:style="[!show ? {cursorP}:{cursor}]" v-on:click="comprobar()">Comprobar</button> 
         <button id="resolver" v-on:click="mostrar()" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
-        <div id="timer">{{timer}}</div>
+		<Transition name="fade" mode="out-in">
+        	<div id="timer" v-if="timer111">{{timer}}</div>
+		</Transition>
       </div>
 
     `,
@@ -497,7 +501,7 @@ const medio = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
-			interval:0,
+			interval: 0,
 		};
 	},
 	methods: {
@@ -563,7 +567,9 @@ const medio = {
 		<button id="timerBoton" v-on:click="contador()" v-bind:style="[timer111 ? {cursor}:{cursorP}]">INICAR SUDOKU</button>
         <button id="listo" v-bind:style="[!show ? {cursorP}:{cursor}]" v-on:click="comprobar()">Comprobar</button> 
         <button id="resolver" v-on:click="mostrar()" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
-        <div id="timer">{{timer}}</div>
+		<Transition name="slide-fade" mode="out-in">
+			<div id="timer" v-if="timer111">{{timer}}</div>
+		</Transition>
       </div>
 
     `,
@@ -744,7 +750,7 @@ const dificil = {
 			cursorP: "pointer",
 			timer: 0,
 			timer111: false,
-			interval:0
+			interval: 0,
 		};
 	},
 	methods: {
@@ -810,7 +816,9 @@ const dificil = {
 		<button id="timerBoton" v-on:click="contador()" v-bind:style="[timer111 ? {cursor}:{cursorP}]">INICAR SUDOKU</button>
         <button id="listo" v-bind:style="[!show ? {cursorP}:{cursor}]" v-on:click="comprobar()">Comprobar</button> 
         <button id="resolver" v-on:click="mostrar()" v-bind:style="[!show ? {cursorP}:{cursor}]">Resolver</button>
-        <div id="timer">{{timer}}</div>
+		<Transition name="bounce" mode="out-in">
+			<div id="timer" v-if="timer111">{{timer}}</div>
+		</Transition>
       </div>
 
     `,
@@ -911,5 +919,3 @@ var routing = new Vue({
 */
 
 //CLASE PUNTUACION
-
-
