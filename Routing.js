@@ -906,3 +906,54 @@ var routing = new Vue({
       </div>
     `,
 });
+/*indexed*/
+
+if (!window.indexedDB) {
+	window.alert("Tu navegador no soporta una version estable de IndexedDB");
+}
+
+const dbconnect = window.indexedDB.open("Sudokus", 3);
+dbconnect.onupgradeneeded = (ev) => {
+	// console.log('Actualizar BD');
+	let db = ev.target.result;
+	try {
+		db.deleteObjectStore("Sudoku");
+	} catch (e) {}
+
+	/*const store = */ db.createObjectStore("Sudoku", { /*keyPath: 'id',*/ autoIncrement: true });
+	// store.createIndex('Sudoku', 'Sudoku', { unique: true });
+};
+dbconnect.onsuccess = (ev) => {
+	//console.log("BD-Actualización exitosa");
+	const db = ev.target.result;
+	const transaction = db.transaction("Sudoku", "readwrite");
+	const store = transaction.objectStore("Sudoku");
+
+	store.add(sudokuF);
+	store.add(sudokuResueltoF);
+	store.add(sudokuM);
+	store.add(sudokuResueltoM);
+	store.add(sudokuD);
+	store.add(sudokuResueltoD);
+
+	transaction.onerror = (ev) => {
+		console.error("¡Se ha producido un error!", ev.target.error.message);
+	};
+
+	transaction.oncomplete = (ev) => {
+		// console.log('¡Los datos se han añadido con éxito!');
+		const store = db.transaction("Sudoku", "readonly").objectStore("Sudoku");
+		const query = store.openCursor();
+		query.onerror = (ev) => {
+			console.error("¡Solicitud fallida!", ev.target.error.message);
+		};
+		query.onsuccess = (ev) => {
+			const cursor = ev.target.result;
+			if (cursor) {
+				// console.log("FUNCIONA");
+			} else {
+				// console.log('¡No hay más registros disponibles!');
+			}
+		};
+	};
+};
